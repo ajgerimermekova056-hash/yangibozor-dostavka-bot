@@ -11,8 +11,8 @@ from aiogram.types import (
     ReplyKeyboardRemove
 )
 
-# Токен вашего бота от @BotFather
-TOKEN = "8942590041:AAHw4DHaN8-0TU6qP8CUf2dSKC76rsA6eSw"
+# НОВЫЙ ЧИСТЫЙ ТОКЕН ОТ BOTFATHER
+TOKEN = "8942590041:AAHv_RI61w6hV5FO4QeoF0hi6ZLZpZw7JC8"
 
 # Создаем бота напрямую
 bot = Bot(token=TOKEN)
@@ -112,7 +112,7 @@ async def process_location(message: Message, state: FSMContext):
     data = await state.get_data()
     lang = data['lang']
     
-    # Сохраняем географические координаты
+    # Сохраняем географические координаты клиента
     await state.update_data(lat=message.location.latitude, lon=message.location.longitude)
     
     kb = ReplyKeyboardMarkup(
