@@ -1,3 +1,4 @@
+import os
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher, F
@@ -11,13 +12,11 @@ from aiogram.types import (
     ReplyKeyboardRemove
 )
 
-# НОВЫЙ ЧИСТЫЙ ТОКЕН ОТ BOTFATHER
-TOKEN = "8942590041:AAHv_RI61w6hV5FO4QeoF0hi6ZLZpZw7JC8"
+# Бот автоматически возьмет чистый токен из настроек Render
+TOKEN = os.getenv("BOT_TOKEN")
 
-# Создаем бота напрямую
+# Создаем бота БЕЗ лишних скрытых настроек, которые ломали запуск
 bot = Bot(token=TOKEN)
-# Отключаем внутреннюю валидацию токена aiogram, чтобы не было ошибок с длинным ID
-bot._initializer = None
 
 dp = Dispatcher(storage=MemoryStorage())
 logging.basicConfig(level=logging.INFO)
