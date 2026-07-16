@@ -4,6 +4,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.client.default import DefaultBotProperties
 from aiogram.types import (
     Message,
     ReplyKeyboardMarkup,
@@ -14,7 +15,8 @@ from aiogram.types import (
 # Токен вашего бота от @BotFather
 TOKEN = "8942590041:AAHw4DHaN8-0TU6qP8CUf2dSKC76rsA6eSw"
 
-bot = Bot(token=TOKEN)
+# validate_token=False нужен, чтобы aiogram не ругался на новые длинные ID токенов
+bot = Bot(token=TOKEN, default=DefaultBotProperties(validate_token=False))
 dp = Dispatcher(storage=MemoryStorage())
 logging.basicConfig(level=logging.INFO)
 
@@ -108,7 +110,7 @@ async def process_location(message: Message, state: FSMContext):
     data = await state.get_data()
     lang = data['lang']
     
-    # Сохраняем координаты
+    # Сохраняем координаты локации клиента
     await state.update_data(lat=message.location.latitude, lon=message.location.longitude)
     
     kb = ReplyKeyboardMarkup(
