@@ -12,11 +12,11 @@ from aiogram.types import (
     ReplyKeyboardRemove
 )
 
-# Бот автоматически возьмет чистый токен из настроек Render
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = "8942590041:AAHv_RI61w6hV5FO4QeoF0hi6ZLZpZw7JC8"
 
 # Создаем бота БЕЗ лишних скрытых настроек, которые ломали запуск
-bot = Bot(token=TOKEN)
+clean_token = TOKEN.strip().replace("\n", "").replace("\r", "")
+bot = Bot(token=clean_token)
 
 dp = Dispatcher(storage=MemoryStorage())
 logging.basicConfig(level=logging.INFO)
